@@ -1,7 +1,13 @@
 import { Box, Image, Input, Button, Text, Checkbox } from "@chakra-ui/react"
 import { Controller } from "react-hook-form"
 
-const CheckBox = (control, name: string, text: string) => {
+interface CheckBoxProps {
+  control: any
+  name: string
+  text: string
+}
+
+const CheckBox = ({ control, name, text }: CheckBoxProps) => {
   return (
     <Box>
       <Controller
