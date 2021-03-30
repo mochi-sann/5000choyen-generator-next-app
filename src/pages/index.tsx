@@ -1,22 +1,29 @@
 import { Box, Image, Input, Button, Text } from "@chakra-ui/react"
 import { useForm, Controller } from "react-hook-form"
+import React, { useState } from "react"
 
 import Layout from "src/components/Layout"
 
 const Index = () => {
-  const { control, handleSubmit } = useForm()
+  const [FormDeta, setFormDeta] = useState({
+    upperRow: "5000兆円",
+    bottomRow: "欲しい！",
+  })
+  const { register, handleSubmit, watch, errors, control } = useForm()
 
   const onSubmit = (data: any) => {
     console.log(data)
+    setFormDeta(data)
   }
 
   return (
     <Layout>
       <Box>
+        <pre>{JSON.stringify(FormDeta)}</pre>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Text>上段</Text>
           <Controller
-            name="firstName"
+            name="upperRow"
             control={control}
             defaultValue=""
             render={({ onChange, value }) => (
@@ -25,30 +32,22 @@ const Index = () => {
           />
           <Text>下段</Text>
           <Controller
-            name="firstName"
+            name="bottomRow"
             control={control}
             defaultValue=""
             render={({ onChange, value }) => (
               <Input onChange={onChange} value={value} placeholder="下段" />
             )}
           />
-          {/* <Controller
-            name="iceCreamType"
-            control={control}
-            options={[
-              { value: "chocolate", label: "Chocolate" },
-              { value: "strawberry", label: "Strawberry" },
-              { value: "vanilla", label: "Vanilla" },
-            ]}
-            as={Select}
-          /> */}
           <Button type="submit" w="100%" my="2">
             生成
           </Button>
         </form>
       </Box>
       <Box border="2px solid" borderColor="gray.200">
-        <Image src="http://5000choyen.app.cyberrex.ml/image?top=5000兆円&bottom=欲しい!" />
+        <Image
+          src={`http://5000choyen.app.cyberrex.ml/image?top=${FormDeta.upperRow}&bottom=${FormDeta.bottomRow}`}
+        />
       </Box>
       {/* <Hero /> */}
     </Layout>
