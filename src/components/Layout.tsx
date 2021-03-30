@@ -27,7 +27,6 @@ const Layout = ({
 
       {/* 本文 */}
       <Container maxW="800px">{children}</Container>
-      <Box h="200px" />
     </Box>
   )
 }
