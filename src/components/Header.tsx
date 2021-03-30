@@ -50,7 +50,7 @@ export default function Header({ position = "sticky" }: PositionProps) {
           </NextLink>
           <Spacer />
           <Center>
-            <Link>
+            <Link href="https://github.com/mochi-sann/5000choyen-generator-next-app">
               <IconButton
                 aria-label={"Github を開く"}
                 icon={<ImGithub size="25" />}
