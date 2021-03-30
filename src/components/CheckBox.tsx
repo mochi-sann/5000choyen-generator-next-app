@@ -1,4 +1,4 @@
-import { Box, Image, Input, Button, Text, Checkbox } from "@chakra-ui/react"
+import { Box, Checkbox } from "@chakra-ui/react"
 import { Controller } from "react-hook-form"
 
 interface CheckBoxProps {

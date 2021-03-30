@@ -4,16 +4,17 @@ import {
   Input,
   Button,
   Text,
-  Link,
   Radio,
   RadioGroup,
   Stack,
+  Link,
 } from "@chakra-ui/react"
 import { useForm, Controller } from "react-hook-form"
 import React, { useState } from "react"
 
 import Layout from "src/components/Layout"
 import CheckBoxComp from "src/components/CheckBox"
+import ImgQuality from "src/components/imgQuality"
 
 const Index = () => {
   const [FormDeta, setFormDeta] = useState({
@@ -23,8 +24,9 @@ const Index = () => {
     rainbow: false,
     single: false,
     type: "png",
+    ImgQuality: 100,
   })
-  const { handleSubmit, control, register } = useForm()
+  const { handleSubmit, control } = useForm()
 
   const onSubmit = (data: any) => {
     console.log(data)
@@ -75,14 +77,18 @@ const Index = () => {
               )}
             />
           </Box>
+          <Box py="2">
+            <Text>画質</Text>
+            <ImgQuality control={control} name="ImgQuality" />
+          </Box>
 
           <CheckBoxComp name="noalpha" text="不透明化" control={control} />
           <CheckBoxComp name="rainbow" text="虹色にする" control={control} />
-          {/* <CheckBoxComp
+          <CheckBoxComp
             name="single"
             text="最初の文字だけ表示"
             control={control}
-          /> */}
+          />
 
           <Button type="submit" w="100%" my="2">
             生成
@@ -93,11 +99,26 @@ const Index = () => {
       <Image
         border="2px solid"
         borderColor="gray.200"
-        src={`${process.env.NEXT_PUBLIC_API_URL}/image?top=${FormDeta.upperRow}&bottom=${FormDeta.bottomRow}&noalpha=${FormDeta.noalpha}&rainbow=${FormDeta.rainbow}&type=${FormDeta.type}`}
+        src={`${process.env.NEXT_PUBLIC_API_URL}/image?top=${
+          FormDeta.upperRow
+        }&bottom=${!FormDeta.single ? FormDeta.bottomRow : ""}&noalpha=${
+          FormDeta.noalpha
+        }&rainbow=${FormDeta.rainbow}&type=${FormDeta.type}&q=${
+          FormDeta.ImgQuality
+        }&single=${FormDeta.single}`}
       />
 
-      <Box>
-        <Text></Text>
+      <Box mt="10">
+        <Text>
+          このwebアプリは
+          <Link
+            href="https://github.com/CyberRex0/5000choyen-api"
+            color="blue.400"
+          >
+            https://github.com/CyberRex0/5000choyen-api
+          </Link>
+          を使用して制作されました。
+        </Text>
       </Box>
       {/* <Hero /> */}
     </Layout>

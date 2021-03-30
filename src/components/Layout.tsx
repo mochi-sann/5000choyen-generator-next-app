@@ -13,13 +13,14 @@ interface Props {
 
 const Layout = ({
   children,
-  title = "タイトル",
+  title = "5000兆円画像生成",
   HiidenHeader = false,
 }: Props) => {
   // const { colorMode } = useColorMode()
   return (
     <Box minHeight="100vh">
       <Head>
+        <link rel="shortcut icon" href="/icon.png" />
         <title>{title}</title>
       </Head>
       {HiidenHeader ? null : <Header />}
