@@ -1,4 +1,14 @@
-import { Box, Image, Input, Button, Text, Link } from "@chakra-ui/react"
+import {
+  Box,
+  Image,
+  Input,
+  Button,
+  Text,
+  Link,
+  Radio,
+  RadioGroup,
+  Stack,
+} from "@chakra-ui/react"
 import { useForm, Controller } from "react-hook-form"
 import React, { useState } from "react"
 
@@ -12,8 +22,9 @@ const Index = () => {
     noalpha: false,
     rainbow: false,
     single: false,
+    type: "png",
   })
-  const { handleSubmit, control } = useForm()
+  const { handleSubmit, control, register } = useForm()
 
   const onSubmit = (data: any) => {
     console.log(data)
@@ -47,6 +58,24 @@ const Index = () => {
               )}
             />
           </Box>
+          <Box py="2">
+            <Text>画像形式</Text>
+            <Controller
+              name="type"
+              control={control}
+              defaultValue="png"
+              render={({ onChange, value }) => (
+                <RadioGroup onChange={onChange} value={value}>
+                  <Stack direction="row">
+                    <Radio value="png">PNG</Radio>
+                    <Radio value="jpeg">JPEG</Radio>
+                    <Radio value="webp">WebP</Radio>
+                  </Stack>
+                </RadioGroup>
+              )}
+            />
+          </Box>
+
           <CheckBoxComp name="noalpha" text="不透明化" control={control} />
           <CheckBoxComp name="rainbow" text="虹色にする" control={control} />
           {/* <CheckBoxComp
@@ -64,7 +93,7 @@ const Index = () => {
       <Image
         border="2px solid"
         borderColor="gray.200"
-        src={`${process.env.NEXT_PUBLIC_API_URL}/image?top=${FormDeta.upperRow}&bottom=${FormDeta.bottomRow}&noalpha=${FormDeta.noalpha}&rainbow=${FormDeta.rainbow}`}
+        src={`${process.env.NEXT_PUBLIC_API_URL}/image?top=${FormDeta.upperRow}&bottom=${FormDeta.bottomRow}&noalpha=${FormDeta.noalpha}&rainbow=${FormDeta.rainbow}&type=${FormDeta.type}`}
       />
 
       <Box>
