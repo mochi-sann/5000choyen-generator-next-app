@@ -15,6 +15,7 @@ const CheckBox = ({ control, name, text }: CheckBoxProps) => {
         control={control}
         render={(props) => (
           <Checkbox
+            p="1"
             onChange={(e) => props.onChange(e.target.checked)}
             checked={props.value}
           >

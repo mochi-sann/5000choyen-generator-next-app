@@ -25,7 +25,7 @@ const Index = () => {
       <Box>
         {/* <pre>{JSON.stringify(FormDeta)}</pre> */}
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Box>
+          <Box py="2">
             <Text>上段</Text>
             <Controller
               name="upperRow"
@@ -36,7 +36,7 @@ const Index = () => {
               )}
             />
           </Box>
-          <Box>
+          <Box py="2">
             <Text>下段</Text>
             <Controller
               name="bottomRow"
@@ -64,9 +64,12 @@ const Index = () => {
       <Image
         border="2px solid"
         borderColor="gray.200"
-        src={`http://5000choyen.app.cyberrex.ml/image?top=${FormDeta.upperRow}&bottom=${FormDeta.bottomRow}&noalpha=${FormDeta.noalpha}&rainbow=${FormDeta.rainbow}`}
+        src={`${process.env.NEXT_PUBLIC_API_URL}/image?top=${FormDeta.upperRow}&bottom=${FormDeta.bottomRow}&noalpha=${FormDeta.noalpha}&rainbow=${FormDeta.rainbow}`}
       />
 
+      <Box>
+        <Text></Text>
+      </Box>
       {/* <Hero /> */}
     </Layout>
   )
