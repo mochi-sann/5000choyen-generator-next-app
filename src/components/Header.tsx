@@ -5,24 +5,21 @@ import {
   Center,
   Heading,
   Container,
-  useColorMode,
   useColorModeValue,
   Spacer,
   IconButton,
   PositionProps,
+  Link,
 } from "@chakra-ui/react"
 import NextLink from "next/link"
 // import Image from "next/image"
 
-import { MoonIcon, SunIcon } from "@chakra-ui/icons"
-
+import { ImGithub } from "react-icons/im"
 // export interface HeaderProps {
 
 // }
 
 export default function Header({ position = "sticky" }: PositionProps) {
-  const { colorMode, toggleColorMode } = useColorMode()
-
   return (
     <Flex
       bg={useColorModeValue("white", "gray.900")}
@@ -45,7 +42,7 @@ export default function Header({ position = "sticky" }: PositionProps) {
               <Box h="100%">
                 <Center h="100%">
                   <Heading as="h1" fontSize="4xl">
-                    👋HEY
+                    5000兆円生成器
                   </Heading>
                 </Center>
               </Box>
@@ -53,13 +50,12 @@ export default function Header({ position = "sticky" }: PositionProps) {
           </NextLink>
           <Spacer />
           <Center>
-            <IconButton
-              aria-label={
-                colorMode === "light" ? "chenge Light mode" : "chenge Dark mode"
-              }
-              icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
-              onClick={toggleColorMode}
-            />
+            <Link>
+              <IconButton
+                aria-label={"Github を開く"}
+                icon={<ImGithub size="25" />}
+              />
+            </Link>
           </Center>
         </Flex>
       </Container>
